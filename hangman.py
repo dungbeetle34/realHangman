@@ -1,0 +1,178 @@
+import sys
+import random
+
+Form0=("""
+    ________
+    |       
+    |   
+    |       
+    |  
+    |
+    |______________
+
+        """)
+
+Form1=("""
+    ________
+    |       O
+    |   
+    |       
+    |      
+    |      
+    |______________
+
+        """)
+
+Form2=("""
+    ________
+    |       O
+    |       |
+    |       |
+    |      
+    |     
+    |______________
+
+        """)
+
+Form3=("""
+    ________
+    |       O
+    |   ----|
+    |       |
+    |      
+    |      
+    |______________
+
+        """)
+
+Form4=("""
+    ________
+    |       O
+    |   ----|----
+    |       |
+    |      
+    |      
+    |______________
+
+        """)
+
+Form5=("""
+    ________
+    |       O
+    |   ----|----
+    |       |
+    |      | 
+    |      | 
+    |______________
+
+        """)
+
+Form6=("""
+    ________
+    |       O
+    |   ----|----
+    |       |
+    |      | |
+    |      | |
+    |______________
+
+        """)
+
+
+def start():
+    restart=input('Would you like to play again? (y/n)\n')
+    if restart == ('y' or 'Y'):
+        main()
+    elif restart == ('n' or 'N'):
+        sys.exit('\nThank you for playing :)\n')
+    else:
+        print('\nSomething went wrong... Try again\n')
+        start()
+
+def findChars(str, ch):
+    # return[i for i, letter in enumerate(str) if letter == ch]
+    arr=[]
+    for i, letter in enumerate(str):
+        if letter == ch:
+            arr.append(i)
+    return arr
+
+def arrToStr(arr, str=''):
+    for index in arr:
+        str+=f'{index}  '
+    return str
+
+
+def main():
+
+    websters=[]
+
+    with open('websters.txt') as file:
+        while(line := file.readline().rstrip()):
+            websters.append(line)
+
+    answers=random.choice(websters)
+    secret=[]
+    for answer in answers:
+        secret.append(answer)
+    secretWord=tuple(secret)
+
+    turns=6
+    form=6-turns
+
+    guesses=['_'] * len(secretWord)
+
+    print("\n\nWELCOME TO HANGMAN!")
+    print(f"{Form0}\n")
+
+    def hangPic():
+        if form == 0:
+            print(Form0)
+        elif form == 1:
+            print(Form1)
+        elif form == 2:
+            print(Form2)
+        elif form == 3:
+            print(Form3)
+        elif form == 4:
+            print(Form4)
+        elif form == 5:
+            print(Form5)
+        elif form == 6:
+            print(Form6)
+
+    while turns > 0:
+        guesses1=arrToStr(guesses)
+        print(f'\n{guesses1}')
+        # print(f"\n{guesses}")
+        guess=input('\nGuess a character:\n')
+
+        while len(guess) > 1:
+            guess=input('Guess a character:\n')
+        if guess not in secretWord:
+            turns-=1
+            form=6-turns
+            print('\nWrong!\n')
+            hangPic()
+            print(f"You have {turns} more guesses\n")
+            if turns == 0:
+                print('You Lose!\n')
+                print(f'The correct word is:\n\n{secretWord}\n')
+                start()
+        elif guess in secretWord:
+            hangPic()
+            chIndex=findChars(secretWord, guess)
+            for i in chIndex:
+                guesses[i] = guess
+        check=True
+        for i in range(0, len(secretWord)):
+            if(guesses[i] != secretWord[i]):
+                check=False
+                break
+        if check == True:
+            print(f'\nYou guessed the correct word:\n\n{guesses}\n')
+            print('You are a winner\n')
+            start()
+
+if __name__ == "__main__":
+    main()

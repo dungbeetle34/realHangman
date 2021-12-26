@@ -99,7 +99,7 @@ def findChars(str, ch):
 
 def arrToStr(arr, str=''):
     for index in arr:
-        str+=f'{index}  '
+        str+=f'{index.upper()}  '
     return str
 
 
@@ -144,7 +144,6 @@ def main():
     while turns > 0:
         guesses1=arrToStr(guesses)
         print(f'\n{guesses1}')
-        # print(f"\n{guesses}")
         guess=input('\nGuess a character:\n')
 
         while len(guess) > 1:
@@ -157,7 +156,7 @@ def main():
             print(f"You have {turns} more guesses\n")
             if turns == 0:
                 print('You Lose!\n')
-                print(f'The correct word is:\n\n{secretWord}\n')
+                print(f'The correct word is:\n\n{arrToStr(secretWord)}\n')
                 start()
         elif guess in secretWord:
             hangPic()

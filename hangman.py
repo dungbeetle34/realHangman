@@ -169,7 +169,7 @@ def main():
                 check=False
                 break
         if check == True:
-            print(f'\nYou guessed the correct word:\n\n{guesses}\n')
+            print(f'\nYou guessed the correct word:\n\n{arrToStr(guesses)}\n')
             print('You are a winner\n')
             start()
 

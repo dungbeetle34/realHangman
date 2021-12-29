@@ -102,6 +102,29 @@ def arrToStr(arr, str=''):
         str+=f'{index.upper()}  '
     return str
 
+def hangPic(form):
+    if form == 0:
+        print(Form0)
+    elif form == 1:
+        print(Form1)
+    elif form == 2:
+        print(Form2)
+    elif form == 3:
+        print(Form3)
+    elif form == 4:
+        print(Form4)
+    elif form == 5:
+        print(Form5)
+    elif form == 6:
+        print(Form6)
+
+def displayUsedChars(arr):
+    msg="Characters you've already guessed:\n["
+    for index in arr:
+        msg+=f'{index.upper()}, '
+    msg+=']'
+    print(msg)
+
 
 def main():
 
@@ -125,41 +148,30 @@ def main():
     print("\n\nWELCOME TO HANGMAN!")
     print(f"{Form0}\n")
 
-    def hangPic():
-        if form == 0:
-            print(Form0)
-        elif form == 1:
-            print(Form1)
-        elif form == 2:
-            print(Form2)
-        elif form == 3:
-            print(Form3)
-        elif form == 4:
-            print(Form4)
-        elif form == 5:
-            print(Form5)
-        elif form == 6:
-            print(Form6)
+    usedChars=[]
 
     while turns > 0:
         guesses1=arrToStr(guesses)
-        print(f'\n{guesses1}')
+        print(f'\n{guesses1}\n')
+        displayUsedChars(usedChars)
         guess=input('\nGuess a character:\n')
+        
 
-        while len(guess) > 1:
+        while len(guess) > 1 or guess in usedChars:
             guess=input('Guess a character:\n')
+
         if guess not in secretWord:
             turns-=1
             form=6-turns
             print('\nWrong!\n')
-            hangPic()
+            hangPic(form)
             print(f"You have {turns} more guesses\n")
             if turns == 0:
                 print('You Lose!\n')
                 print(f'The correct word is:\n\n{arrToStr(secretWord)}\n')
                 start()
         elif guess in secretWord:
-            hangPic()
+            hangPic(form)
             chIndex=findChars(secretWord, guess)
             for i in chIndex:
                 guesses[i] = guess
@@ -172,6 +184,8 @@ def main():
             print(f'\nYou guessed the correct word:\n\n{arrToStr(guesses)}\n')
             print('You are a winner\n')
             start()
+
+        usedChars.append(guess)
 
 if __name__ == "__main__":
     main()

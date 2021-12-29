@@ -163,6 +163,9 @@ def main():
         while guess in usedChars:
             guess=input(f"\nYou've already guessed '{guess.upper()}'...\nTry again:\n")
 
+        while guess in guesses:
+            guess=input(f"\n'{guess.upper()}' is already correct... We don't like smart alecks\nGuess again:\n")
+
         if guess not in secretWord:
             usedChars.append(guess)
             turns-=1

@@ -1,6 +1,8 @@
 import sys
 import random
 
+import time
+
 Form0=("""
     ________
     |       
@@ -161,17 +163,21 @@ def main():
         displayUsedChars(usedChars)
         guess=input('\nGuess a character:\n')
         
-        while guess=='':
-            guess=input('\nGuess a character:\n')
+        while True:
+            if guess=='':
+                guess=input('\nGuess a character:\n')
 
-        while len(guess) > 1:
-            guess=input('\nGuess must be one character...\nGo again:\n')
+            elif len(guess) > 1:
+                guess=input('\nGuess must be one character...\nGo again:\n')
 
-        while guess in usedChars:
-            guess=input(f"\nYou've already guessed '{guess.upper()}'...\nTry again:\n")
+            elif guess in usedChars:
+                guess=input(f"\nYou've already guessed '{guess.upper()}'...\nTry again:\n")
 
-        while guess in guesses:
-            guess=input(f"\n'{guess.upper()}' is already correct... We don't like smart alecks\nGuess again:\n")
+            elif guess in guesses:
+                guess=input(f"\n'{guess.upper()}' is already correct... We don't like smart alecks\nGuess again:\n")
+
+            else:
+                break
 
         if guess not in secretWord:
             usedChars.append(guess)

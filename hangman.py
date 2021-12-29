@@ -157,10 +157,14 @@ def main():
         guess=input('\nGuess a character:\n')
         
 
-        while len(guess) > 1 or guess in usedChars:
-            guess=input('Guess a character:\n')
+        while len(guess) > 1:
+            guess=input('\nGuess must be one character...\nGo again:\n')
+
+        while guess in usedChars:
+            guess=input(f"\nYou've already guessed '{guess.upper()}'...\nTry again:\n")
 
         if guess not in secretWord:
+            usedChars.append(guess)
             turns-=1
             form=6-turns
             print('\nWrong!\n')
@@ -184,8 +188,6 @@ def main():
             print(f'\nYou guessed the correct word:\n\n{arrToStr(guesses)}\n')
             print('You are a winner\n')
             start()
-
-        usedChars.append(guess)
 
 if __name__ == "__main__":
     main()

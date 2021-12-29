@@ -183,7 +183,7 @@ def main():
             usedChars.append(guess)
             turns-=1
             form=6-turns
-            print('\nWrong!\n')
+            print('\WRONG!\n')
             hangPic(form)
             print(f"You have {turns} more guesses\n")
             if turns == 0:

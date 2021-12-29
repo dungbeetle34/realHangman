@@ -156,6 +156,8 @@ def main():
         displayUsedChars(usedChars)
         guess=input('\nGuess a character:\n')
         
+        while guess=='':
+            guess=input('\nGuess a character:\n')
 
         while len(guess) > 1:
             guess=input('\nGuess must be one character...\nGo again:\n')

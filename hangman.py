@@ -153,6 +153,7 @@ def main():
     guesses=['_'] * len(secretWord)
 
     print("\n\nWELCOME TO HANGMAN!")
+    print("\n(Type 'quit' to exit the program)")
     print(f"{Form0}\n")
 
     usedChars=[]
@@ -166,16 +167,15 @@ def main():
         while True:
             if guess=='':
                 guess=input('\nGuess a character:\n')
-
             elif len(guess) > 1:
-                guess=input('\nGuess must be one character...\nGo again:\n')
-
+                if guess.lower() == 'quit':
+                    sys.exit('\nSad to see you go... Come back anytime!\n')
+                else:
+                    guess=input('\nGuess must be one character...\nGo again:\n')
             elif guess in usedChars:
                 guess=input(f"\nYou've already guessed '{guess.upper()}'...\nTry again:\n")
-
             elif guess in guesses:
                 guess=input(f"\n'{guess.upper()}' is already correct... We don't like smart alecks\nGuess again:\n")
-
             else:
                 break
 

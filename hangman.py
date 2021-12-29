@@ -102,6 +102,11 @@ def arrToStr(arr, str=''):
         str+=f'{index.upper()}  '
     return str
 
+def arrToStr2(arr, str=''):
+    for index in arr:
+        str+=f'{index.upper()}'
+    return str
+
 def hangPic(form):
     if form == 0:
         print(Form0)
@@ -176,8 +181,8 @@ def main():
             hangPic(form)
             print(f"You have {turns} more guesses\n")
             if turns == 0:
-                print('You Lose!\n')
-                print(f'The correct word is:\n\n{arrToStr(secretWord)}\n')
+                print('YOU LOSE!\n')
+                print(f'The correct word is: {arrToStr2(secretWord)}\n')
                 start()
         elif guess in secretWord:
             hangPic(form)
@@ -190,8 +195,8 @@ def main():
                 check=False
                 break
         if check == True:
-            print(f'\nYou guessed the correct word:\n\n{arrToStr(guesses)}\n')
-            print('You are a winner\n')
+            print('YOU WIN!')
+            print(f'\nYou guessed the correct word: {arrToStr2(guesses)}\n')
             start()
 
 if __name__ == "__main__":

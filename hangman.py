@@ -109,21 +109,18 @@ def arrToStr2(arr, str=''):
         str+=f'{index.upper()}'
     return str
 
-def hangPic(form):
-    if form == 0:
-        print(Form0)
-    elif form == 1:
-        print(Form1)
-    elif form == 2:
-        print(Form2)
-    elif form == 3:
-        print(Form3)
-    elif form == 4:
-        print(Form4)
-    elif form == 5:
-        print(Form5)
-    elif form == 6:
-        print(Form6)
+
+def hangPic(pic):
+    switcher={
+        0:Form0,
+        1:Form1,
+        2:Form2,
+        3:Form3,
+        4:Form4,
+        5:Form5,
+        6:Form6
+    }
+    print(switcher.get(pic, Form0))
 
 def displayUsedChars(arr):
     msg="Characters you've already guessed:\n["

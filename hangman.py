@@ -2,83 +2,58 @@ import sys
 import random
 
 import time
+from tkinter.tix import Form
 
-Form0=("""
-    ________
-    |       
-    |   
-    |       
-    |  
-    |
-    |______________
-
-        """)
-
-Form1=("""
-    ________
-    |       O
-    |   
-    |       
-    |      
-    |      
-    |______________
-
-        """)
-
-Form2=("""
-    ________
-    |       O
-    |       |
-    |       |
-    |      
-    |     
-    |______________
-
-        """)
-
-Form3=("""
-    ________
-    |       O
-    |   ----|
-    |       |
-    |      
-    |      
-    |______________
-
-        """)
-
-Form4=("""
-    ________
-    |       O
-    |   ----|----
-    |       |
-    |      
-    |      
-    |______________
-
-        """)
-
-Form5=("""
-    ________
-    |       O
-    |   ----|----
-    |       |
-    |      | 
-    |      | 
-    |______________
-
-        """)
-
-Form6=("""
-    ________
-    |       O
-    |   ----|----
-    |       |
-    |      | |
-    |      | |
-    |______________
-
-        """)
+Forms = ['''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========''']
 
 
 def start():
@@ -111,16 +86,7 @@ def arrToStr2(arr, str=''):
 
 
 def hangPic(pic):
-    switcher={
-        0:Form0,
-        1:Form1,
-        2:Form2,
-        3:Form3,
-        4:Form4,
-        5:Form5,
-        6:Form6
-    }
-    print(switcher.get(pic, Form0))
+    print(f'{Forms[pic]}')
 
 def displayUsedChars(arr):
     msg="Characters you've already guessed:\n["
@@ -151,7 +117,7 @@ def main():
 
     print("\n\nWELCOME TO HANGMAN!")
     print("\n(Type 'quit' to exit the program)")
-    print(f"{Form0}\n")
+    print(f"{Forms[0]}\n")
 
     usedChars=[]
 

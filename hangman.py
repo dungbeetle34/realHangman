@@ -2,7 +2,7 @@ import sys
 import random
 
 import time
-from tkinter.tix import Form
+# from tkinter.tix import Form
 
 Forms = ['''
   +---+
@@ -148,13 +148,14 @@ def main():
             form=6-turns
             print('\WRONG!\n')
             hangPic(form)
-            print(f"You have {turns} more guesses\n")
+            print(f"Guesses Left: {turns}\n")
             if turns == 0:
                 print('YOU LOSE!\n')
                 print(f'The correct word is: {arrToStr2(secretWord)}\n')
                 start()
         elif guess in secretWord:
             hangPic(form)
+            print(f"Guesses Left: {turns}\n")
             chIndex=findChars(secretWord, guess)
             for i in chIndex:
                 guesses[i] = guess
